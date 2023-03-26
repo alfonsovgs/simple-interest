@@ -74,3 +74,16 @@ Follow the next steps
           "terms": 4,
           "rate": 10
         }'
+
+
+## Code Coverage
+To show the code coverage follow the next steps
+- `.\mvnw clean`
+- `.\mvnw test`
+
+After running the test, Maven generates a report inside `.\target\site\jacoco\index.html`
+
+### Coverage indicators
+- 🟥 Red : Not Covered
+- 🟨 Yellow : Partially Covered
+- 🟩 Green : Completely Covered
