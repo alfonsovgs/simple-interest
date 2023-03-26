@@ -1,4 +1,5 @@
 package com.simple.interest.microservice.infrastructure.data.h2;
+
 import com.simple.interest.microservice.infrastructure.data.RequestResponseStorage;
 import org.springframework.jdbc.core.JdbcTemplate;
 

@@ -32,7 +32,7 @@ public class RequestResponseFilter implements Filter {
 
         filterChain.doFilter(requestWrapper, responseWrapper);
 
-        if(responseWrapper.getStatus() == HttpStatus.OK.value()) {
+        if (responseWrapper.getStatus() == HttpStatus.OK.value()) {
             String requestBody = getStringValue(requestWrapper.getContentAsByteArray(),
                     request.getCharacterEncoding());
 

@@ -33,6 +33,6 @@ public class BeanConfiguration {
         registrationBean.setFilter(new RequestResponseFilter(storage));
         registrationBean.addUrlPatterns("/api/interests/calculate");
 
-        return  registrationBean;
+        return registrationBean;
     }
 }

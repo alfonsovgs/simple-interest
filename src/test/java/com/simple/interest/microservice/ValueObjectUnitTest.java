@@ -150,6 +150,7 @@ public class ValueObjectUnitTest {
         // then
         assertThat(creditRequest1).isEqualTo(creditRequest2);
     }
+
     @DisplayName("Given a two creditRequest with different values, then both creditRequest are not equals")
     @Test
     void test13() {
