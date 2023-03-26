@@ -104,3 +104,6 @@ The project has the `spring-boot-starter-actuator` dependency and a `/health` en
 at the following cURL.
 
 `curl --location 'http://localhost:8080/health'`
+
+## Deploy 
+You can use this endpoint `https://simple-interest.fly.dev/api/interests/calculate` to test the api.
