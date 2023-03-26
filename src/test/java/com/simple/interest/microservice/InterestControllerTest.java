@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.simple.interest.microservice.domain.entities.CreditRequest;
 import com.simple.interest.microservice.domain.entities.Interest;
 import com.simple.interest.microservice.domain.services.InterestCalculator;
+import com.simple.interest.microservice.infrastructure.data.RequestResponseStorage;
+import com.simple.interest.microservice.presentation.api.controllers.InterestController;
+import com.simple.interest.microservice.presentation.api.filters.RequestResponseFilter;
+import com.simple.interest.microservice.presentation.api.handlers.ValidationHandler;
 import com.simple.interest.microservice.presentation.api.requests.GetInterestRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import java.time.LocalDate;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @WebMvcTest
 public class InterestControllerTest {
@@ -28,6 +33,9 @@ public class InterestControllerTest {
     @MockBean
     private InterestCalculator interestCalculator;
 
+    @MockBean
+    private RequestResponseStorage storage;
+
     @Test
     public void shouldCalculateInterest_whenValidRequest_thenReturnOk() throws Exception {
         GetInterestRequest request = new GetInterestRequest(1_000, 4, 10);
@@ -35,10 +43,15 @@ public class InterestControllerTest {
 
         when(interestCalculator.Generate(creditRequest)).thenReturn(interestsExpected());
 
+        mvc = standaloneSetup(new InterestController(interestCalculator))
+                .addFilter(new RequestResponseFilter(storage))
+                .build();
+
         mvc.perform(MockMvcRequestBuilders
                     .post("/api/interests/calculate")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(toJsonString(request))
+                    .characterEncoding("utf-8")
                     .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -49,10 +62,16 @@ public class InterestControllerTest {
     public void shouldGetError_whenRequestIsInvalid_thenReturnBadRequest() throws Exception {
         GetInterestRequest request = new GetInterestRequest(1_000_000, 4, 10);
 
+        mvc = standaloneSetup(new InterestController(interestCalculator))
+                .addFilter(new RequestResponseFilter(storage))
+                .setControllerAdvice(new ValidationHandler())
+                .build();
+
         mvc.perform(MockMvcRequestBuilders
                         .post("/api/interests/calculate")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(toJsonString(request))
+                        .characterEncoding("utf-8")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.status").exists())
