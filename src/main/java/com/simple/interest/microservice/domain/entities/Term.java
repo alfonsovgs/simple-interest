@@ -6,8 +6,8 @@ import com.simple.interest.microservice.domain.shared.ValueObject;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public final class Term implements ValueObject {
-    private static final int MIN_rate = 4;
-    private static final int MAX_rate = 52;
+    private static final int MIN_RATE = 4;
+    private static final int MAX_RATE = 52;
 
     private final int value;
 
@@ -23,8 +23,8 @@ public final class Term implements ValueObject {
     }
 
     private void validate() {
-        if (value < MIN_rate || value > MAX_rate) {
-            throw new InvalidTermsException();
+        if (value < MIN_RATE || value > MAX_RATE) {
+            throw new InvalidTermsException(MIN_RATE, MAX_RATE);
         }
     }
 
@@ -45,11 +45,10 @@ public final class Term implements ValueObject {
             return true;
         }
 
-        if (!(obj instanceof Term)) {
+        if (!(obj instanceof Term term)) {
             return false;
         }
 
-        Term term = (Term) obj;
         return value == term.value;
     }
 }

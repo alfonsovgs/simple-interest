@@ -39,7 +39,7 @@ public class ValueObjectUnitTest {
     @DisplayName("When create an amount with min value, then exception is thrown")
     @Test
     void test2() {
-        // when
+        // whenAmount should be more than $1.00 and lesser than $999999.00.
         Throwable throwable = catchThrowable(() -> Amount.of(1));
 
         // then

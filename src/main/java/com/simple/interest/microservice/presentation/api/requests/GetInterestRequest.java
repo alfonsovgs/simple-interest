@@ -8,15 +8,15 @@ import jakarta.validation.constraints.Min;
 public class GetInterestRequest {
     @Min(value = 2, message = "Amount should be more than 1.")
     @Max(value = 999_998, message = "Amount should be lesser than 999,999.00")
-    private double amount;
+    private final double amount;
 
     @Min(value = 4, message = "Terms min value should be 4.")
     @Max(value = 52, message = "Terms max value should be 52.")
-    private int terms;
+    private final int terms;
 
     @Min(value = 2, message = "Rate min value should be more than 1.")
     @Max(value = 99, message = "Rate max value should be lesser than 100.")
-    private double rate;
+    private final double rate;
 
     @JsonCreator
     public GetInterestRequest(@JsonProperty("amount") final double amount, @JsonProperty("terms") final int terms,

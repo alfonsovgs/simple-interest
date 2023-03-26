@@ -23,7 +23,7 @@ public final class Amount implements ValueObject {
 
     private void validate() {
         if (value <= MIN_AMOUNT || value >= MAX_AMOUNT) {
-            throw new InvalidAmountException();
+            throw new InvalidAmountException(MIN_AMOUNT,MAX_AMOUNT);
         }
     }
 
@@ -44,11 +44,10 @@ public final class Amount implements ValueObject {
             return true;
         }
 
-        if (!(obj instanceof Amount)) {
+        if (!(obj instanceof Amount amount)) {
             return false;
         }
 
-        Amount amount = (Amount) obj;
         return value == amount.value;
     }
 }

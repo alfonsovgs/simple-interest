@@ -23,7 +23,7 @@ public final class Rate implements ValueObject {
 
     private void validate() {
         if (value <= MIN_RATE || value >= MAX_RATE) {
-            throw new InvalidRateException();
+            throw new InvalidRateException(MIN_RATE, MAX_RATE);
         }
     }
 
@@ -48,11 +48,10 @@ public final class Rate implements ValueObject {
             return true;
         }
 
-        if (!(obj instanceof Rate)) {
+        if (!(obj instanceof Rate rate)) {
             return false;
         }
 
-        Rate rate = (Rate) obj;
         return value == rate.value;
     }
 }

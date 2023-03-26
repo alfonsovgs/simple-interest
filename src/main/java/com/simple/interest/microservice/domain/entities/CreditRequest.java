@@ -50,11 +50,9 @@ public final class CreditRequest implements ValueObject {
             return true;
         }
 
-        if (!(obj instanceof CreditRequest)) {
+        if (!(obj instanceof CreditRequest creditRequest)) {
             return false;
         }
-
-        CreditRequest creditRequest = (CreditRequest) obj;
 
         return new EqualsBuilder()
                 .append(amount, creditRequest.amount)
