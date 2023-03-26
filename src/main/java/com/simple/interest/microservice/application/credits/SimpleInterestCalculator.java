@@ -19,7 +19,7 @@ public class SimpleInterestCalculator implements InterestCalculator {
 
         double amount = initialAmount;
         Interest[] interests = new Interest[terms];
-        for(int paymentNumber = 1; paymentNumber <= terms; paymentNumber++) {
+        for (int paymentNumber = 1; paymentNumber <= terms; paymentNumber++) {
             double interestByWeek = amount * rate / terms;
             double amortization = initialAmount / terms;
             double paymentAmount = interestByWeek + amortization;

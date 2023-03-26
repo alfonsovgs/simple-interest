@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public final class CreditRequest implements ValueObject {
     private final Amount amount;
     private final Term term;
-    private  final Rate rate;
+    private final Rate rate;
 
     private CreditRequest(Amount amount, Term term, Rate rate) {
         this.amount = amount;
@@ -20,7 +20,7 @@ public final class CreditRequest implements ValueObject {
     }
 
     public static CreditRequest of(Amount amount, Term term, Rate rate) {
-        return  new CreditRequest(amount, term, rate);
+        return new CreditRequest(amount, term, rate);
     }
 
     public Amount getAmount() {
@@ -46,7 +46,7 @@ public final class CreditRequest implements ValueObject {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
 

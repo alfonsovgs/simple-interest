@@ -48,11 +48,11 @@ public class InterestControllerTest {
                 .build();
 
         mvc.perform(MockMvcRequestBuilders
-                    .post("/api/interests/calculate")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(toJsonString(request))
-                    .characterEncoding("utf-8")
-                    .accept(MediaType.APPLICATION_JSON))
+                        .post("/api/interests/calculate")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJsonString(request))
+                        .characterEncoding("utf-8")
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         verify(interestCalculator).Generate(creditRequest);
@@ -93,9 +93,9 @@ public class InterestControllerTest {
 
         Interest[] interests = new Interest[4];
         interests[0] = new Interest(1, 275, paymentDate.plusWeeks(1));
-        interests[1] = new Interest(2, 268.75,  paymentDate.plusWeeks(2));
-        interests[2] = new Interest(3, 262.50,  paymentDate.plusWeeks(3));
-        interests[3] = new Interest(4, 256.25,  paymentDate.plusWeeks(4));
+        interests[1] = new Interest(2, 268.75, paymentDate.plusWeeks(2));
+        interests[2] = new Interest(3, 262.50, paymentDate.plusWeeks(3));
+        interests[3] = new Interest(4, 256.25, paymentDate.plusWeeks(4));
 
         return interests;
     }

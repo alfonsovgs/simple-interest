@@ -44,7 +44,7 @@ public final class Rate implements ValueObject {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
 

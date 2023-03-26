@@ -22,7 +22,7 @@ public final class Amount implements ValueObject {
     }
 
     private void validate() {
-        if(value <= MIN_AMOUNT || value >= MAX_AMOUNT) {
+        if (value <= MIN_AMOUNT || value >= MAX_AMOUNT) {
             throw new InvalidAmountException();
         }
     }
@@ -40,7 +40,7 @@ public final class Amount implements ValueObject {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
 

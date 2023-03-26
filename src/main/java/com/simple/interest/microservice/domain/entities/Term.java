@@ -23,7 +23,7 @@ public final class Term implements ValueObject {
     }
 
     private void validate() {
-        if(value < MIN_rate || value > MAX_rate) {
+        if (value < MIN_rate || value > MAX_rate) {
             throw new InvalidTermsException();
         }
     }
@@ -41,7 +41,7 @@ public final class Term implements ValueObject {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
 

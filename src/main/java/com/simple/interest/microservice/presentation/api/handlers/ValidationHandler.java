@@ -32,7 +32,7 @@ public class ValidationHandler extends ResponseEntityExceptionHandler {
         });
 
         ApiErrorResponse errorResponse = ApiErrorResponse.of(HttpStatus.BAD_REQUEST, "Invalid request", errors);
-        return  new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(DomainException.class)
