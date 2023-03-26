@@ -5,13 +5,10 @@ import com.simple.interest.microservice.domain.entities.Interest;
 import com.simple.interest.microservice.domain.services.InterestCalculator;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
 
 public class SimpleInterestCalculator implements InterestCalculator {
     private final int WEEKS_TO_ADD = 1;
-    
+
     @Override
     public Interest[] Generate(CreditRequest creditRequest) {
         LocalDate paymentDate = LocalDate.now();
