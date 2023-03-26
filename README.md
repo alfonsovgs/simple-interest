@@ -57,3 +57,20 @@ This class calculates interest based on the following
     amount = amount + interestByWeek - paymentByWeek;
 
 You can follow this [excel](https://docs.google.com/spreadsheets/d/1CPdFy0TwUI0vQgZzc1Md0UsZrZv0hARCl-Lit0iQlkU/edit?usp=sharing) to evaluate amounts.
+
+## Run via Docker
+Follow the next steps
+- `.\mvnw clean`
+- `.\mvnw install`
+- `docker build -t interest-microservice -f Dockerfile .`
+- `docker run -p 8080:8080 interest-microservice`
+  - `test the endpoint: http://localhost:8080/api/interests/calculate`
+
+### cURL
+      curl --location 'http://localhost:8080/api/interests/calculate' \
+      --header 'Content-Type: application/json' \
+      --data '{
+          "amount": 1000,
+          "terms": 4,
+          "rate": 10
+        }'
