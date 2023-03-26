@@ -46,3 +46,14 @@ The application will be structured:
     - Domain: Defines business entities and rules.
     - Infrastructure: Provides capabilities to define external services.
 
+## SimpleInterestCalculator
+This class calculates interest based on the following
+
+    interestByWeek = amount * rate / terms
+    amortizationByWeek = amount / rate
+    paymentByWeek = amortization + interest
+
+    // for the next payment
+    amount = amount + interestByWeek - paymentByWeek;
+
+You can follow this [excel](https://docs.google.com/spreadsheets/d/1CPdFy0TwUI0vQgZzc1Md0UsZrZv0hARCl-Lit0iQlkU/edit?usp=sharing) to evaluate amounts.
