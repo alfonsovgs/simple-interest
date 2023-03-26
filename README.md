@@ -87,3 +87,9 @@ After running the test, Maven generates a report inside `.\target\site\jacoco\in
 - 🟥 Red : Not Covered
 - 🟨 Yellow : Partially Covered
 - 🟩 Green : Completely Covered
+
+
+## Health Endpoint
+The project has the `spring-boot-starter-actuator` dependency and a `/health` endpoint has been published you can see it at the following cURL.
+
+`curl --location 'http://localhost:8080/health'`
