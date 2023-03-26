@@ -32,13 +32,13 @@ public class RequestResponseFilter implements Filter {
 
         filterChain.doFilter(requestWrapper, responseWrapper);
 
-        String requestBody = getStringValue(requestWrapper.getContentAsByteArray(),
-                request.getCharacterEncoding());
+        if(responseWrapper.getStatus() == HttpStatus.OK.value()) {
+            String requestBody = getStringValue(requestWrapper.getContentAsByteArray(),
+                    request.getCharacterEncoding());
 
-        String responseBody = getStringValue(responseWrapper.getContentAsByteArray(),
-                response.getCharacterEncoding());
+            String responseBody = getStringValue(responseWrapper.getContentAsByteArray(),
+                    response.getCharacterEncoding());
 
-        if(responseWrapper.getStatus() == HttpStatus.OK.value() ) {
             storage.save(requestBody, responseBody);
         }
 
